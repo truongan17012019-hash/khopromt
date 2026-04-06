@@ -30,7 +30,31 @@ export function middleware(req: NextRequest) {
   if (pathname === "/danh-muc") {
     const category = req.nextUrl.searchParams.get("category") || req.nextUrl.searchParams.get("cat");
     if (category) {
+      if (category === "all") {
+        const redirectUrl = new URL("/danh-muc", req.url);
+        req.nextUrl.searchParams.forEach((value, key) => {
+          if (key !== "category" && key !== "cat") {
+            redirectUrl.searchParams.append(key, value);
+          }
+        });
+        return NextResponse.redirect(redirectUrl, 308);
+      }
       const redirectUrl = new URL(`/danh-muc/${encodeURIComponent(category)}`, req.url);
+      req.nextUrl.searchParams.forEach((value, key) => {
+        if (key !== "category" && key !== "cat") {
+          redirectUrl.searchParams.append(key, value);
+        }
+      });
+      return NextResponse.redirect(redirectUrl, 308);
+    }
+  }
+
+  // Normalize /danh-muc/[slug]?category=... or ?cat=...
+  if (pathname.startsWith("/danh-muc/")) {
+    const hasLegacyCategoryQuery =
+      req.nextUrl.searchParams.has("category") || req.nextUrl.searchParams.has("cat");
+    if (hasLegacyCategoryQuery) {
+      const redirectUrl = new URL(pathname, req.url);
       req.nextUrl.searchParams.forEach((value, key) => {
         if (key !== "category" && key !== "cat") {
           redirectUrl.searchParams.append(key, value);

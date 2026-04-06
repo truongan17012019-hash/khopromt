@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getCategoriesFromSettings } from "@/lib/server/category-settings";
 
 type FilterMode = "all" | "hot" | "sale";
+type SortMode = "popular" | "rating" | "newest" | "price-low" | "price-high";
 
 function normalizeFilter(input?: string): FilterMode {
   if (input === "hot" || input === "sale") return input;
@@ -13,6 +14,19 @@ function getCategoryParam(searchParams?: { [key: string]: string | string[] | un
   if (typeof searchParams?.cat === "string") return searchParams.cat;
   if (typeof searchParams?.category === "string") return searchParams.category;
   return "";
+}
+
+function normalizeSort(input?: string): SortMode {
+  if (
+    input === "popular" ||
+    input === "rating" ||
+    input === "newest" ||
+    input === "price-low" ||
+    input === "price-high"
+  ) {
+    return input;
+  }
+  return "popular";
 }
 
 export async function generateMetadata({
@@ -48,12 +62,13 @@ export async function generateMetadata({
         : categoryName
           ? `Tổng hợp prompt AI danh mục ${categoryName}, có xem trước và mua nhanh theo nhu cầu.`
           : "Khám phá kho prompt AI theo danh mục, công cụ và mức giá phù hợp.";
+  const canonical = queryCat ? `/danh-muc/${queryCat}` : "/danh-muc";
 
   return {
     title,
     description,
     alternates: {
-      canonical: "/danh-muc",
+      canonical,
     },
     robots:
       queryFilter !== "all" || !!queryCat
@@ -83,6 +98,9 @@ export default async function DanhMucPage({
     typeof searchParams?.filter === "string"
       ? normalizeFilter(searchParams.filter)
       : "all";
+  const queryTool = typeof searchParams?.tool === "string" ? searchParams.tool : "all";
+  const querySort =
+    typeof searchParams?.sort === "string" ? normalizeSort(searchParams.sort) : "popular";
   const querySearch = typeof searchParams?.search === "string" ? searchParams.search : "";
 
   const categoriesData = await getCategoriesFromSettings();
@@ -111,6 +129,8 @@ export default async function DanhMucPage({
       <DanhMucClientPage
         initialCategory={queryCat}
         initialFilter={queryFilter}
+        initialTool={queryTool}
+        initialSort={querySort}
         initialSearch={querySearch}
         categoriesData={categoriesData}
       />

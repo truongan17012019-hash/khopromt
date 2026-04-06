@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test:e2e": "playwright test",
     "deploy:prod": "vercel deploy --prod --yes",
     "deploy:auto": "node scripts/auto-deploy.cjs",
     "supabase:prompts:dry": "node scripts/import-prompts-to-supabase.cjs --dry-run",
@@ -22,6 +23,7 @@
     "zustand": "^4.5.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@types/node": "^20.12.0",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
