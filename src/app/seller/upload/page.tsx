@@ -116,10 +116,10 @@ export default function SellerUpload() {
         throw new Error(errJson.error || "Failed to upload prompt");
       }
 
-      setToast({ type: "success", message: "✅ Prompt uploaded successfully!" });
+      setToast({ type: "success", message: "✅ Đăng prompt thành công!" });
 
       setTimeout(() => {
-        router.push("/seller/dashboard");
+        router.push("/seller/thu-nhap");
       }, 2000);
     } catch (error) {
       setToast({
@@ -132,54 +132,54 @@ export default function SellerUpload() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 py-8">
       <div className="max-w-2xl mx-auto px-4">
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Tải Lên Prompt Mới</h1>
-          <p className="text-gray-600 mb-8">Chia sẻ prompt AI của bạn với cộng đồng</p>
+        <div className="bg-slate-800/50 border border-slate-700 rounded-2xl shadow-lg p-8 backdrop-blur">
+          <h1 className="text-3xl font-bold text-white mb-2">Tải Lên Prompt Mới</h1>
+          <p className="text-slate-300 mb-8">Chia sẻ prompt AI của bạn với cộng đồng</p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">Tiêu Đề*</label>
+              <label className="block text-sm font-semibold text-slate-100 mb-2">Tiêu Đề*</label>
               <input
                 type="text"
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
                 placeholder="Ví dụ: Advanced ChatGPT Prompts for Content Writing"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 bg-slate-700 text-white border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
-              <p className="text-xs text-gray-500 mt-1">{formData.title.length}/200 ký tự</p>
+              <p className="text-xs text-slate-400 mt-1">{formData.title.length}/200 ký tự</p>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">Mô Tả*</label>
+              <label className="block text-sm font-semibold text-slate-100 mb-2">Mô Tả*</label>
               <textarea
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
                 placeholder="Mô tả chi tiết về prompt của bạn..."
                 rows={4}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 bg-slate-700 text-white border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
-              <p className="text-xs text-gray-500 mt-1">Tối thiểu 20 ký tự</p>
+              <p className="text-xs text-slate-400 mt-1">Tối thiểu 20 ký tự</p>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">Nội Dung Prompt*</label>
+              <label className="block text-sm font-semibold text-slate-100 mb-2">Nội Dung Prompt*</label>
               <textarea
                 name="content"
                 value={formData.content}
                 onChange={handleChange}
                 placeholder="Paste nội dung prompt đầy đủ của bạn..."
                 rows={6}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
+                className="w-full px-4 py-2 bg-slate-700 text-white border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-semibold text-gray-900 mb-2">Giá (đ)*</label>
+                <label className="block text-sm font-semibold text-slate-100 mb-2">Giá (đ)*</label>
                 <input
                   type="number"
                   name="price"
@@ -188,17 +188,17 @@ export default function SellerUpload() {
                   placeholder="Ví dụ: 50000"
                   min={0}
                   max={10000000}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 bg-slate-700 text-white border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-900 mb-2">Danh Mục*</label>
+                <label className="block text-sm font-semibold text-slate-100 mb-2">Danh Mục*</label>
                 <select
                   name="category_id"
                   value={formData.category_id}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 bg-slate-700 text-white border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Chọn danh mục</option>
                   {categories.map((cat) => (
@@ -211,7 +211,7 @@ export default function SellerUpload() {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">Tools</label>
+              <label className="block text-sm font-semibold text-slate-100 mb-2">Tools</label>
               <div className="grid grid-cols-2 gap-3">
                 {tools.map((tool) => (
                   <label key={tool.id} className="flex items-center gap-2 cursor-pointer">
@@ -221,40 +221,40 @@ export default function SellerUpload() {
                       onChange={() => handleToolToggle(tool.id)}
                       className="w-4 h-4 rounded text-blue-600"
                     />
-                    <span className="text-sm text-gray-700">{tool.name}</span>
+                    <span className="text-sm text-slate-200">{tool.name}</span>
                   </label>
                 ))}
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">Ảnh Bìa (URL)</label>
+              <label className="block text-sm font-semibold text-slate-100 mb-2">Ảnh Bìa (URL)</label>
               <input
                 type="url"
                 name="image_url"
                 value={formData.image_url}
                 onChange={handleChange}
                 placeholder="https://example.com/image.jpg"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 bg-slate-700 text-white border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">
+              <label className="block text-sm font-semibold text-slate-100 mb-2">
                 Tags (cách nhau bằng dấu phẩy)
               </label>
               <input
                 type="text"
                 onChange={handleTagChange}
                 placeholder="Ví dụ: writing, marketing, chatgpt"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 bg-slate-700 text-white border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               {formData.tags.length > 0 && (
                 <div className="mt-3 flex flex-wrap gap-2">
                   {formData.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                      className="inline-block bg-blue-500/20 text-blue-200 px-3 py-1 rounded-full text-sm"
                     >
                       #{tag}
                     </span>
@@ -266,7 +266,7 @@ export default function SellerUpload() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50 flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {loading && <FiLoader className="animate-spin" />}
               {loading ? "Đang Tải Lên..." : "Tải Lên Prompt"}

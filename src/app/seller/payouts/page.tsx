@@ -142,11 +142,11 @@ export default function SellerPayoutsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 py-8">
       <div className="max-w-4xl mx-auto px-4">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Quản Lý Thanh Toán</h1>
-          <p className="text-gray-600 mt-2">Theo dõi các yêu cầu thanh toán và doanh thu</p>
+          <h1 className="text-3xl font-bold text-white">Quản Lý Thanh Toán</h1>
+          <p className="text-slate-300 mt-2">Theo dõi các yêu cầu thanh toán và doanh thu</p>
         </div>
 
         {error && (
@@ -157,10 +157,10 @@ export default function SellerPayoutsPage() {
 
         {data && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            <div className="bg-white rounded-lg shadow p-6 border-l-4 border-yellow-500">
+            <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 border-l-4 border-yellow-500">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-600 text-sm">Chờ Thanh Toán</p>
+                  <p className="text-slate-300 text-sm">Chờ Thanh Toán</p>
                   <p className="text-2xl font-bold text-yellow-600">
                     {(data.totals.totalPending / 1000).toFixed(0)}k đ
                   </p>
@@ -169,10 +169,10 @@ export default function SellerPayoutsPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
+            <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 border-l-4 border-green-500">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-600 text-sm">Đã Thanh Toán</p>
+                  <p className="text-slate-300 text-sm">Đã Thanh Toán</p>
                   <p className="text-2xl font-bold text-green-600">
                     {(data.totals.totalProcessed / 1000).toFixed(0)}k đ
                   </p>
@@ -181,10 +181,10 @@ export default function SellerPayoutsPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6 border-l-4 border-red-500">
+            <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 border-l-4 border-red-500">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-600 text-sm">Thất Bại</p>
+                  <p className="text-slate-300 text-sm">Thất Bại</p>
                   <p className="text-2xl font-bold text-red-600">
                     {(data.totals.totalFailed / 1000).toFixed(0)}k đ
                   </p>
@@ -205,12 +205,12 @@ export default function SellerPayoutsPage() {
         </div>
 
         {showRequestForm && (
-          <div className="bg-white rounded-lg shadow p-6 mb-8">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Tạo Yêu Cầu Thanh Toán</h2>
+          <div className="bg-slate-800/50 border border-slate-700 rounded-2xl shadow p-6 mb-8 backdrop-blur">
+            <h2 className="text-lg font-semibold text-white mb-4">Tạo Yêu Cầu Thanh Toán</h2>
 
             <form onSubmit={handleRequestPayout} className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                <label className="block text-sm font-semibold text-slate-100 mb-2">
                   Số Tiền (VND)*
                 </label>
                 <input
@@ -224,13 +224,13 @@ export default function SellerPayoutsPage() {
                   }
                   placeholder="Ví dụ: 500000"
                   min={100000}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 bg-slate-700 text-white border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <p className="text-xs text-gray-500 mt-1">Tối thiểu 100k VND</p>
+                <p className="text-xs text-slate-400 mt-1">Tối thiểu 100k VND</p>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                <label className="block text-sm font-semibold text-slate-100 mb-2">
                   Tên Ngân Hàng*
                 </label>
                 <input
@@ -243,12 +243,12 @@ export default function SellerPayoutsPage() {
                     }))
                   }
                   placeholder="Ví dụ: Vietcombank"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 bg-slate-700 text-white border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                <label className="block text-sm font-semibold text-slate-100 mb-2">
                   Số Tài Khoản*
                 </label>
                 <input
@@ -261,7 +261,7 @@ export default function SellerPayoutsPage() {
                     }))
                   }
                   placeholder="Ví dụ: 1234567890"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 bg-slate-700 text-white border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -276,7 +276,7 @@ export default function SellerPayoutsPage() {
                 <button
                   type="button"
                   onClick={() => setShowRequestForm(false)}
-                  className="flex-1 bg-gray-300 text-gray-900 py-2 rounded-lg hover:bg-gray-400 transition"
+                  className="flex-1 bg-slate-700 text-white py-2 rounded-lg hover:bg-slate-600 transition"
                 >
                   Hủy
                 </button>
@@ -285,39 +285,39 @@ export default function SellerPayoutsPage() {
           </div>
         )}
 
-        <div className="bg-white rounded-lg shadow">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">
+        <div className="bg-slate-800/50 border border-slate-700 rounded-2xl shadow backdrop-blur">
+          <div className="px-6 py-4 border-b border-slate-700">
+            <h2 className="text-lg font-semibold text-white">
               Lịch Sử Thanh Toán ({data?.payouts.length || 0})
             </h2>
           </div>
 
           {!data?.payouts.length ? (
             <div className="px-6 py-12 text-center">
-              <FiCreditCard className="mx-auto text-4xl text-gray-300 mb-3" />
-              <p className="text-gray-600">Chưa có yêu cầu thanh toán</p>
+              <FiCreditCard className="mx-auto text-4xl text-slate-500 mb-3" />
+              <p className="text-slate-300">Chưa có yêu cầu thanh toán</p>
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gray-50 border-b border-gray-200">
+                <thead className="bg-slate-900/40 border-b border-slate-700">
                   <tr>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Ngày</th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Số Tiền</th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Tài Khoản</th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Trạng Thái</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-slate-100">Ngày</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-slate-100">Số Tiền</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-slate-100">Tài Khoản</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-slate-100">Trạng Thái</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {data?.payouts.map((payout) => (
-                    <tr key={payout.id} className="hover:bg-gray-50 transition">
-                      <td className="px-6 py-4 text-sm text-gray-600">
+                    <tr key={payout.id} className="hover:bg-slate-700/30 transition">
+                      <td className="px-6 py-4 text-sm text-slate-300">
                         {new Date(payout.created_at).toLocaleDateString("vi-VN")}
                       </td>
-                      <td className="px-6 py-4 text-sm font-semibold text-gray-900">
+                      <td className="px-6 py-4 text-sm font-semibold text-slate-100">
                         {(payout.amount / 1000).toFixed(0)}k đ
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-600">
+                      <td className="px-6 py-4 text-sm text-slate-300">
                         {payout.bank_account && payout.bank_name && (
                           <span>
                             {payout.bank_name} - ...{payout.bank_account.slice(-4)}

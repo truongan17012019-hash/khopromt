@@ -130,38 +130,38 @@ export default function SellerSettingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 py-8">
       <div className="max-w-2xl mx-auto px-4">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Cài Đặt Cửa Hàng</h1>
-          <p className="text-gray-600 mt-2">Quản lý hồ sơ và thông tin thanh toán của bạn</p>
+          <h1 className="text-3xl font-bold text-white">Cài Đặt Cửa Hàng</h1>
+          <p className="text-slate-300 mt-2">Quản lý hồ sơ và thông tin thanh toán của bạn</p>
         </div>
 
         <div className="space-y-6">
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Thông Tin Tài Khoản</h2>
+          <div className="bg-slate-800/50 border border-slate-700 rounded-2xl shadow p-6 backdrop-blur">
+            <h2 className="text-lg font-semibold text-white mb-4">Thông Tin Tài Khoản</h2>
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Email</label>
                 <input
                   type="email"
                   value={profile?.email || ""}
                   disabled
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-600"
+                  className="w-full px-4 py-2 border border-slate-600 rounded-lg bg-slate-700 text-slate-300"
                 />
-                <p className="text-xs text-gray-500 mt-1">Email không thể thay đổi</p>
+                <p className="text-xs text-slate-400 mt-1">Email không thể thay đổi</p>
               </div>
             </div>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Hồ Sơ Cửa Hàng</h2>
+            <div className="bg-slate-800/50 border border-slate-700 rounded-2xl shadow p-6 backdrop-blur">
+              <h2 className="text-lg font-semibold text-white mb-4">Hồ Sơ Cửa Hàng</h2>
 
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  <label className="block text-sm font-semibold text-slate-100 mb-2">
                     Tên Cửa Hàng*
                   </label>
                   <input
@@ -170,15 +170,15 @@ export default function SellerSettingsPage() {
                     value={formData.display_name}
                     onChange={handleChange}
                     placeholder="Ví dụ: Prompt Store Pro"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 bg-slate-700 text-white border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-xs text-slate-400 mt-1">
                     Tên này sẽ hiển thị cho khách mua hàng
                   </p>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  <label className="block text-sm font-semibold text-slate-100 mb-2">
                     Mô Tả Cửa Hàng
                   </label>
                   <textarea
@@ -187,19 +187,19 @@ export default function SellerSettingsPage() {
                     onChange={handleChange}
                     placeholder="Ví dụ: Chuyên cung cấp prompt chất lượng cao..."
                     rows={4}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 bg-slate-700 text-white border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <p className="text-xs text-gray-500 mt-1">Tối đa 500 ký tự</p>
+                  <p className="text-xs text-slate-400 mt-1">Tối đa 500 ký tự</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Thông Tin Thanh Toán</h2>
+            <div className="bg-slate-800/50 border border-slate-700 rounded-2xl shadow p-6 backdrop-blur">
+              <h2 className="text-lg font-semibold text-white mb-4">Thông Tin Thanh Toán</h2>
 
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  <label className="block text-sm font-semibold text-slate-100 mb-2">
                     Tên Ngân Hàng Mặc Định
                   </label>
                   <input
@@ -208,12 +208,12 @@ export default function SellerSettingsPage() {
                     value={formData.default_bank_name}
                     onChange={handleChange}
                     placeholder="Ví dụ: Vietcombank, Techcombank"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 bg-slate-700 text-white border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  <label className="block text-sm font-semibold text-slate-100 mb-2">
                     Số Tài Khoản Mặc Định
                   </label>
                   <input
@@ -222,21 +222,21 @@ export default function SellerSettingsPage() {
                     value={formData.default_bank_account}
                     onChange={handleChange}
                     placeholder="Ví dụ: 1234567890"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 bg-slate-700 text-white border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-xs text-slate-400 mt-1">
                     Thông tin này sẽ được sử dụng làm mặc định trong yêu cầu thanh toán
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Bảo Mật</h2>
+            <div className="bg-slate-800/50 border border-slate-700 rounded-2xl shadow p-6 backdrop-blur">
+              <h2 className="text-lg font-semibold text-white mb-4">Bảo Mật</h2>
 
               <button
                 type="button"
-                className="px-4 py-2 bg-gray-200 text-gray-900 rounded-lg hover:bg-gray-300 transition"
+                className="px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition"
               >
                 Đổi Mật Khẩu
               </button>
@@ -253,7 +253,7 @@ export default function SellerSettingsPage() {
               <button
                 type="button"
                 onClick={() => window.history.back()}
-                className="flex-1 bg-gray-300 text-gray-900 py-2 rounded-lg hover:bg-gray-400 transition"
+                className="flex-1 bg-slate-700 text-white py-2 rounded-lg hover:bg-slate-600 transition"
               >
                 Hủy
               </button>
