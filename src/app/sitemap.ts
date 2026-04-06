@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const categoryPages = categories.map((cat) => ({
-    url: `${baseUrl}/danh-muc?category=${cat.id}`,
+    url: `${baseUrl}/danh-muc/${cat.id}`,
     lastModified: now, changeFrequency: "weekly" as const, priority: 0.8,
   }));
 

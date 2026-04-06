@@ -26,6 +26,20 @@ export function middleware(req: NextRequest) {
   const ip = req.headers.get("x-forwarded-for") || req.ip || "unknown";
   const pathname = req.nextUrl.pathname;
 
+  // Legacy category query URLs -> canonical category slug URLs
+  if (pathname === "/danh-muc") {
+    const category = req.nextUrl.searchParams.get("category") || req.nextUrl.searchParams.get("cat");
+    if (category) {
+      const redirectUrl = new URL(`/danh-muc/${encodeURIComponent(category)}`, req.url);
+      req.nextUrl.searchParams.forEach((value, key) => {
+        if (key !== "category" && key !== "cat") {
+          redirectUrl.searchParams.append(key, value);
+        }
+      });
+      return NextResponse.redirect(redirectUrl, 308);
+    }
+  }
+
   // Rate limiting for API routes
   if (pathname.startsWith("/api/")) {
     if (!checkRateLimit(ip)) {

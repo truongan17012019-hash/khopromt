@@ -9,12 +9,18 @@ function normalizeFilter(input?: string): FilterMode {
   return "all";
 }
 
+function getCategoryParam(searchParams?: { [key: string]: string | string[] | undefined }): string {
+  if (typeof searchParams?.cat === "string") return searchParams.cat;
+  if (typeof searchParams?.category === "string") return searchParams.category;
+  return "";
+}
+
 export async function generateMetadata({
   searchParams,
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
 }): Promise<Metadata> {
-  const queryCat = typeof searchParams?.cat === "string" ? searchParams.cat : "";
+  const queryCat = getCategoryParam(searchParams);
   const queryFilter =
     typeof searchParams?.filter === "string"
       ? normalizeFilter(searchParams.filter)
@@ -72,7 +78,7 @@ export default async function DanhMucPage({
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const queryCat = typeof searchParams?.cat === "string" ? searchParams.cat : "all";
+  const queryCat = getCategoryParam(searchParams) || "all";
   const queryFilter =
     typeof searchParams?.filter === "string"
       ? normalizeFilter(searchParams.filter)
