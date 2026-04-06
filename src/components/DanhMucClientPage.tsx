@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import PromptCard from "@/components/PromptCard";
 import { prompts, categories as defaultCategories, tools, type Category } from "@/data/prompts";
 
@@ -19,6 +20,7 @@ export default function DanhMucClientPage({
   initialSearch = "",
   categoriesData = defaultCategories,
 }: DanhMucClientPageProps) {
+  const router = useRouter();
   const safePrompts = Array.isArray(prompts) ? prompts.filter(Boolean) : [];
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [selectedTool, setSelectedTool] = useState<string>("all");
@@ -33,6 +35,15 @@ export default function DanhMucClientPage({
     setSelectedFilter(initialFilter);
     setSearchQuery(initialSearch);
   }, [initialCategory, initialFilter, initialSearch]);
+
+  const handleCategoryChange = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+    if (categoryId === "all") {
+      router.push("/danh-muc");
+      return;
+    }
+    router.push(`/danh-muc/${categoryId}`);
+  };
 
   const filtered = useMemo(() => {
     let next = [...safePrompts];
@@ -112,7 +123,7 @@ export default function DanhMucClientPage({
               <h3 className="font-bold text-slate-900 mb-3 text-sm uppercase tracking-wider">Danh mục</h3>
               <div className="space-y-1">
                 <button
-                  onClick={() => setSelectedCategory("all")}
+                  onClick={() => handleCategoryChange("all")}
                   className={`w-full text-left px-3 py-2 rounded-xl text-sm transition-colors ${
                     selectedCategory === "all"
                       ? "bg-brand-50 text-brand-800 font-semibold ring-1 ring-brand-200"
@@ -124,7 +135,7 @@ export default function DanhMucClientPage({
                 {categoriesData.map((cat) => (
                   <button
                     key={cat.id}
-                    onClick={() => setSelectedCategory(cat.id)}
+                    onClick={() => handleCategoryChange(cat.id)}
                     className={`w-full text-left px-3 py-2 rounded-xl text-sm transition-colors flex items-center gap-2 ${
                       selectedCategory === cat.id
                         ? "bg-brand-50 text-brand-800 font-semibold ring-1 ring-brand-200"
