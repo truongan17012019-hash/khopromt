@@ -1,0 +1,113 @@
+import DanhMucClientPage from "@/components/DanhMucClientPage";
+import type { Metadata } from "next";
+import { getCategoriesFromSettings } from "@/lib/server/category-settings";
+
+type FilterMode = "all" | "hot" | "sale";
+
+function normalizeFilter(input?: string): FilterMode {
+  if (input === "hot" || input === "sale") return input;
+  return "all";
+}
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}): Promise<Metadata> {
+  const queryCat = typeof searchParams?.cat === "string" ? searchParams.cat : "";
+  const queryFilter =
+    typeof searchParams?.filter === "string"
+      ? normalizeFilter(searchParams.filter)
+      : "all";
+  const categories = await getCategoriesFromSettings();
+  const categoryName =
+    categories.find((c) => c.id === queryCat)?.name ||
+    categories.find((c) => c.name === queryCat)?.name ||
+    "";
+
+  const suffix =
+    queryFilter === "hot"
+      ? " - Bán chạy"
+      : queryFilter === "sale"
+      ? " - Khuyến mãi"
+      : categoryName
+      ? ` - ${categoryName}`
+      : "";
+  const title = `Danh mục prompt AI${suffix} | PromptVN`;
+  const description =
+    queryFilter === "hot"
+      ? "Khám phá các prompt AI bán chạy nhất theo từng danh mục, cập nhật liên tục."
+      : queryFilter === "sale"
+        ? "Tổng hợp prompt AI đang giảm giá, phù hợp nhiều mục tiêu công việc và kinh doanh."
+        : categoryName
+          ? `Tổng hợp prompt AI danh mục ${categoryName}, có xem trước và mua nhanh theo nhu cầu.`
+          : "Khám phá kho prompt AI theo danh mục, công cụ và mức giá phù hợp.";
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: "/danh-muc",
+    },
+    robots:
+      queryFilter !== "all" || !!queryCat
+        ? { index: false, follow: true }
+        : { index: true, follow: true },
+    openGraph: {
+      title,
+      description,
+      url: "/danh-muc",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  };
+}
+
+export default async function DanhMucPage({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
+  const queryCat = typeof searchParams?.cat === "string" ? searchParams.cat : "all";
+  const queryFilter =
+    typeof searchParams?.filter === "string"
+      ? normalizeFilter(searchParams.filter)
+      : "all";
+  const querySearch = typeof searchParams?.search === "string" ? searchParams.search : "";
+
+  const categoriesData = await getCategoriesFromSettings();
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Danh mục prompt AI",
+    description: "Danh mục prompt AI theo lĩnh vực và nhu cầu sử dụng.",
+    url: "https://khopromt.pro/danh-muc",
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: categoriesData.map((cat, idx) => ({
+        "@type": "ListItem",
+        position: idx + 1,
+        name: cat.name,
+        url: `https://khopromt.pro/danh-muc/${cat.id}`,
+      })),
+    },
+  };
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
+      <DanhMucClientPage
+        initialCategory={queryCat}
+        initialFilter={queryFilter}
+        initialSearch={querySearch}
+        categoriesData={categoriesData}
+      />
+    </>
+  );
+}

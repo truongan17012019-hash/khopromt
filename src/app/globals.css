@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply antialiased text-slate-900 bg-slate-50;
+    font-family: "Be Vietnam Pro", system-ui, sans-serif;
+  }
+  *:focus-visible {
+    outline: 2px solid #f97316;
+    outline-offset: 2px;
+  }
+  .no-select {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Be Vietnam Pro", system-ui, sans-serif;
+  }
+  .section-wrap {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  /** Nền hero kiểu thư mục AI (lưới + glow cam) */
+  .hero-mlv {
+    background-color: #020617;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(249, 115, 22, 0.22), transparent),
+      linear-gradient(rgba(249, 115, 22, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(249, 115, 22, 0.06) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+  }
+  .section-eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.2em] text-brand-500;
+  }
+}
+
+@layer components {
+  .ui-card {
+    @apply bg-white rounded-2xl border border-slate-200/80 shadow-sm;
+  }
+  .ui-card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:border-brand-500/25 hover:-translate-y-0.5;
+  }
+  .ui-btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed;
+  }
+  .ui-btn-primary {
+    @apply ui-btn bg-brand-500 text-white hover:bg-brand-600 shadow-md shadow-brand-500/20;
+  }
+  .ui-btn-secondary {
+    @apply ui-btn bg-slate-100 text-slate-800 hover:bg-slate-200;
+  }
+  .ui-btn-ghost {
+    @apply ui-btn border border-slate-200 text-slate-700 hover:bg-slate-50;
+  }
+  .ui-input {
+    @apply w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent;
+  }
+  .ui-label {
+    @apply block text-sm font-medium text-slate-700 mb-1;
+  }
+  .ui-select {
+    @apply ui-input appearance-none;
+  }
+  .ui-table-wrap {
+    @apply ui-card overflow-hidden;
+  }
+  .ui-th {
+    @apply text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase;
+  }
+  .ui-td {
+    @apply px-5 py-3 text-sm;
+  }
+  .ui-badge {
+    @apply inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+@keyframes fade-hero {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-hero {
+  animation: fade-hero 0.45s ease-out;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
